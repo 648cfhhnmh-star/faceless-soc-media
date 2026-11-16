@@ -1,0 +1,26 @@
+<!doctype html><html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+:root{color-scheme:dark}body{margin:0;background:#07080d;color:#e8ecf5;font:17px/1.6 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:720px;margin:0 auto;padding:48px 22px}h1{color:#33f0ff;font-size:28px;line-height:1.2}h2{color:#ff3da5;font-size:19px;margin-top:32px}
+a{color:#33f0ff}code,input,textarea{font:15px ui-monospace,Menlo,monospace}input,textarea{width:100%;box-sizing:border-box;background:#11141f;color:#e8ecf5;border:1px solid #2a3045;border-radius:10px;padding:12px}
+button,.btn{display:inline-block;margin-top:12px;background:#33f0ff;color:#07080d;border:0;border-radius:10px;padding:12px 18px;font-weight:700;cursor:pointer;text-decoration:none}
+.muted{color:#8a93a8;font-size:14px}.box{background:#11141f;border:1px solid #2a3045;border-radius:14px;padding:18px;margin:18px 0}
+</style><title>Propojit TikTok · Faceless SOC</title></head><body><main><h1>Propojit TikTok účet</h1>
+<div class="box">
+<p>1. Vlož <b>Client key</b> své aplikace z TikTok for Developers. Není tajný, jde jen do odkazu.</p>
+<input id="ck" placeholder="Client key" autocomplete="off">
+<p>2. Klikni a v TikToku potvrď přístup účtem kanálu.</p>
+<button id="go">Přihlásit se do TikToku</button>
+</div>
+<p class="muted">Client secret sem nikdy nevkládej. Po potvrzení tě TikTok vrátí na stránku s kódem.</p>
+<script>
+document.getElementById('go').onclick=function(){
+  var ck=document.getElementById('ck').value.trim(); if(!ck){alert('Vlož Client key');return;}
+  var st=Math.random().toString(36).slice(2); try{sessionStorage.setItem('tt_state',st)}catch(e){}
+  var redirect=location.origin+'/faceless-soc-media/tiktok/callback/';
+  var u='https://www.tiktok.com/v2/auth/authorize/?client_key='+encodeURIComponent(ck)
+   +'&scope='+encodeURIComponent('user.info.basic,video.upload,video.publish')
+   +'&response_type=code&redirect_uri='+encodeURIComponent(redirect)+'&state='+st;
+  location.href=u;
+};
+</script><p class="muted"><a href="/faceless-soc-media/">Domů</a> · <a href="/faceless-soc-media/terms/">Podmínky</a> · <a href="/faceless-soc-media/privacy/">Soukromí</a></p></main></body></html>
